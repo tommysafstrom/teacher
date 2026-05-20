@@ -59,7 +59,7 @@ export async function PUT(req: NextRequest, { params }: RouteParams) {
     return NextResponse.json({ error: "Ej tilldelad" }, { status: 403 });
   }
 
-  let body: { answers: Record<string, string>; submit?: boolean };
+  let body: { answers: Record<string, string>; submit?: boolean; reopen?: boolean };
   try {
     body = await req.json();
   } catch {
@@ -81,7 +81,8 @@ export async function PUT(req: NextRequest, { params }: RouteParams) {
     kidId,
     answers: sanitizedAnswers,
     lastActivityAt: now,
-    submittedAt: body.submit ? now : existing?.submittedAt,
+    // reopen clears submittedAt; submit sets it; otherwise keep existing
+    submittedAt: body.reopen ? undefined : body.submit ? now : existing?.submittedAt,
   };
 
   await upsertResponse(updated);

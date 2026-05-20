@@ -80,6 +80,11 @@ export default function RequesterDetailPage({ params }: { params: Promise<{ id: 
         <p className="text-sm text-gray-400">
           Skapad {new Date(detail.createdAt).toLocaleDateString("sv-SE")}
         </p>
+        {detail.dueDate && (
+          <p className={`text-sm mt-0.5 ${new Date(detail.dueDate) < new Date(new Date().toDateString()) ? "underline text-red-600" : "text-gray-500"}`}>
+            Svaras senast {new Date(detail.dueDate).toLocaleDateString("sv-SE")}
+          </p>
+        )}
         {detail.note && <p className="text-sm text-gray-600 mt-1 italic">{detail.note}</p>}
       </div>
 

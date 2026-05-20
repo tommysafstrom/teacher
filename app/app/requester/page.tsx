@@ -127,6 +127,11 @@ export default function RequesterPage() {
                   <p className="text-sm text-gray-400">
                     Skapad {new Date(request.createdAt).toLocaleDateString("sv-SE")}
                   </p>
+                  {request.dueDate && (
+                    <p className={`text-sm mt-0.5 ${new Date(request.dueDate) < new Date(new Date().toDateString()) ? "underline text-red-600" : "text-gray-500"}`}>
+                      Svaras senast {new Date(request.dueDate).toLocaleDateString("sv-SE")}
+                    </p>
+                  )}
                   <p className="text-sm text-gray-600 mt-1">
                     {request.kidIds.length} elev(er) · {submittedCount}/{expectedCount} svar inskickade
                   </p>

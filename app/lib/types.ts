@@ -74,6 +74,7 @@ export interface User {
   id: string;
   name: string;
   role: UserRole;
+  email: string;
 }
 
 export interface Request {
@@ -82,6 +83,7 @@ export interface Request {
   kidIds: string[];
   supplierIds: string[];
   note: string;
+  dueDate?: string;
   createdAt: string;
   status: "active" | "closed";
 }

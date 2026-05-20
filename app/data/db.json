@@ -1029,22 +1029,26 @@
     {
       "id": "u001",
       "name": "Anna Lindgren",
-      "role": "supplier"
+      "role": "supplier",
+      "email": "anna.lindgren@skola.example"
     },
     {
       "id": "u002",
       "name": "Erik Bergström",
-      "role": "supplier"
+      "role": "supplier",
+      "email": "erik.bergstrom@skola.example"
     },
     {
       "id": "u003",
       "name": "Sara Holmberg",
-      "role": "supplier"
+      "role": "supplier",
+      "email": "sara.holmberg@skola.example"
     },
     {
       "id": "u004",
       "name": "Malin den magnifika",
-      "role": "requester"
+      "role": "requester",
+      "email": "malin@skola.example"
     }
   ],
   "requests": [
@@ -1070,12 +1074,8 @@
       "requestId": "req-1779308481410",
       "supplierId": "u001",
       "kidId": "k001",
-      "answers": {
-        "screeningId": "scr-1779308829538",
-        "traits": "kommunikationsliknande, flexibilitetsliknande"
-      },
-      "lastActivityAt": "2026-05-20T20:27:09.589Z",
-      "submittedAt": "2026-05-20T20:27:09.589Z"
+      "answers": {},
+      "lastActivityAt": "2026-05-20T20:52:50.675Z"
     }
   ],
   "reminders": []

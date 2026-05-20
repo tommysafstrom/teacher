@@ -92,6 +92,11 @@ export default function SupplierPage() {
                 <p className="text-sm text-gray-400">
                   Skapad {new Date(request.createdAt).toLocaleDateString("sv-SE")}
                 </p>
+                {request.dueDate && (
+                  <p className={`text-sm mt-0.5 ${new Date(request.dueDate) < new Date(new Date().toDateString()) ? "underline text-red-600" : "text-gray-500"}`}>
+                    Svaras senast {new Date(request.dueDate).toLocaleDateString("sv-SE")}
+                  </p>
+                )}
                 {request.note && (
                   <p className="text-sm text-gray-600 mt-1 italic">{request.note}</p>
                 )}
@@ -104,18 +109,21 @@ export default function SupplierPage() {
                       key={kidId}
                       className="flex items-center justify-between bg-gray-50 rounded px-3 py-2"
                     >
-                      <div className="flex items-center gap-3">
-                        <span className="text-sm font-medium">{getKidLabel(kidId)}</span>
-                        <StatusBadge status={status} />
+                      <div className="flex items-center gap-2">
+                        {status === "submitted" ? (
+                          <span className="text-green-600 font-bold text-sm">✓</span>
+                        ) : null}
+                        <span className={`text-sm font-medium ${status === "submitted" ? "text-gray-500" : ""}`}>
+                          {getKidLabel(kidId)}
+                        </span>
+                        {status !== "submitted" && <StatusBadge status={status} />}
                       </div>
-                      {status !== "submitted" && (
-                        <Link
-                          href={`/supplier/requests/${request.id}/kids/${kidId}`}
-                          className="text-xs text-blue-600 hover:underline"
-                        >
-                          {status === "started" ? "Fortsätt" : "Svara"}
-                        </Link>
-                      )}
+                      <Link
+                        href={`/supplier/requests/${request.id}/kids/${kidId}`}
+                        className="text-xs text-blue-600 hover:underline"
+                      >
+                        {status === "submitted" ? "Visa" : status === "started" ? "Fortsätt" : "Svara"}
+                      </Link>
                     </div>
                   );
                 })}

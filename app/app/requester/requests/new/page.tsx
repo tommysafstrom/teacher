@@ -12,6 +12,7 @@ export default function NewRequestPage() {
   const [selectedKids, setSelectedKids] = useState<string[]>([]);
   const [selectedSuppliers, setSelectedSuppliers] = useState<string[]>([]);
   const [note, setNote] = useState("");
+  const [dueDate, setDueDate] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -43,7 +44,7 @@ export default function NewRequestPage() {
     const res = await fetch("/api/requests", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ kidIds: selectedKids, supplierIds: selectedSuppliers, note }),
+      body: JSON.stringify({ kidIds: selectedKids, supplierIds: selectedSuppliers, note, dueDate: dueDate || undefined }),
     });
     if (res.ok) {
       router.push("/requester");
@@ -171,6 +172,15 @@ export default function NewRequestPage() {
             onChange={(e) => setNote(e.target.value)}
             placeholder="Beskriv vad du behöver observationer om..."
             className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+          <label className="block mt-4 mb-1 text-sm font-medium text-gray-700">
+            Sista svarsdatum (valfritt)
+          </label>
+          <input
+            type="date"
+            value={dueDate}
+            onChange={(e) => setDueDate(e.target.value)}
+            className="border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
           <div className="mt-6 flex justify-between">
             <button
