@@ -402,6 +402,405 @@
             }
           ],
           "summary": "1 observationer markerade."
+        },
+        {
+          "id": "scr-1779308829538",
+          "date": "2026-05-20",
+          "traits": [
+            "kommunikationsliknande",
+            "flexibilitetsliknande"
+          ],
+          "answers": [
+            {
+              "questionId": "q1",
+              "checked": true
+            },
+            {
+              "questionId": "q2",
+              "checked": false
+            },
+            {
+              "questionId": "q3",
+              "checked": false
+            },
+            {
+              "questionId": "q4",
+              "checked": false
+            },
+            {
+              "questionId": "q5",
+              "checked": false
+            },
+            {
+              "questionId": "q6",
+              "checked": false
+            },
+            {
+              "questionId": "q7",
+              "checked": false
+            },
+            {
+              "questionId": "q8",
+              "checked": false
+            },
+            {
+              "questionId": "q9",
+              "checked": false
+            },
+            {
+              "questionId": "q10",
+              "checked": false
+            },
+            {
+              "questionId": "q11",
+              "checked": false
+            },
+            {
+              "questionId": "q12",
+              "checked": false
+            },
+            {
+              "questionId": "q13",
+              "checked": false
+            },
+            {
+              "questionId": "q14",
+              "checked": false
+            },
+            {
+              "questionId": "q15",
+              "checked": false
+            },
+            {
+              "questionId": "q16",
+              "checked": false
+            },
+            {
+              "questionId": "q17",
+              "checked": false
+            },
+            {
+              "questionId": "q18",
+              "checked": false
+            },
+            {
+              "questionId": "q19",
+              "checked": false
+            },
+            {
+              "questionId": "q20",
+              "checked": false
+            },
+            {
+              "questionId": "q21",
+              "checked": false
+            },
+            {
+              "questionId": "q22",
+              "checked": false
+            },
+            {
+              "questionId": "q23",
+              "checked": false
+            },
+            {
+              "questionId": "q24",
+              "checked": false
+            },
+            {
+              "questionId": "q25",
+              "checked": false
+            },
+            {
+              "questionId": "q26",
+              "checked": false
+            },
+            {
+              "questionId": "q27",
+              "checked": false
+            },
+            {
+              "questionId": "q28",
+              "checked": false
+            },
+            {
+              "questionId": "q29",
+              "checked": false
+            },
+            {
+              "questionId": "q30",
+              "checked": false
+            },
+            {
+              "questionId": "q31",
+              "checked": false
+            },
+            {
+              "questionId": "q32",
+              "checked": false
+            },
+            {
+              "questionId": "q33",
+              "checked": false
+            },
+            {
+              "questionId": "q34",
+              "checked": false
+            },
+            {
+              "questionId": "q35",
+              "checked": false
+            },
+            {
+              "questionId": "q36",
+              "checked": false
+            },
+            {
+              "questionId": "q37",
+              "checked": false
+            },
+            {
+              "questionId": "q38",
+              "checked": false
+            },
+            {
+              "questionId": "q39",
+              "checked": false
+            },
+            {
+              "questionId": "q40",
+              "checked": false
+            },
+            {
+              "questionId": "q41",
+              "checked": false
+            },
+            {
+              "questionId": "q42",
+              "checked": false
+            },
+            {
+              "questionId": "q43",
+              "checked": false
+            },
+            {
+              "questionId": "q44",
+              "checked": false
+            },
+            {
+              "questionId": "q45",
+              "checked": false
+            },
+            {
+              "questionId": "q46",
+              "checked": false
+            },
+            {
+              "questionId": "q47",
+              "checked": false
+            },
+            {
+              "questionId": "q48",
+              "checked": false
+            },
+            {
+              "questionId": "q49",
+              "checked": false
+            },
+            {
+              "questionId": "q50",
+              "checked": false
+            },
+            {
+              "questionId": "q51",
+              "checked": false
+            },
+            {
+              "questionId": "q52",
+              "checked": false
+            },
+            {
+              "questionId": "q53",
+              "checked": false
+            },
+            {
+              "questionId": "q54",
+              "checked": false
+            },
+            {
+              "questionId": "q55",
+              "checked": false
+            },
+            {
+              "questionId": "q56",
+              "checked": false
+            },
+            {
+              "questionId": "q57",
+              "checked": false
+            },
+            {
+              "questionId": "q58",
+              "checked": false
+            },
+            {
+              "questionId": "q59",
+              "checked": false
+            },
+            {
+              "questionId": "q60",
+              "checked": false
+            },
+            {
+              "questionId": "q61",
+              "checked": false
+            },
+            {
+              "questionId": "q62",
+              "checked": false
+            },
+            {
+              "questionId": "q63",
+              "checked": false
+            },
+            {
+              "questionId": "q64",
+              "checked": false
+            },
+            {
+              "questionId": "q65",
+              "checked": false
+            },
+            {
+              "questionId": "q66",
+              "checked": false
+            },
+            {
+              "questionId": "q67",
+              "checked": false
+            },
+            {
+              "questionId": "q68",
+              "checked": false
+            },
+            {
+              "questionId": "q69",
+              "checked": false
+            },
+            {
+              "questionId": "q70",
+              "checked": false
+            },
+            {
+              "questionId": "q71",
+              "checked": false
+            },
+            {
+              "questionId": "q72",
+              "checked": false
+            },
+            {
+              "questionId": "q73",
+              "checked": false
+            },
+            {
+              "questionId": "q74",
+              "checked": false
+            },
+            {
+              "questionId": "q75",
+              "checked": false
+            },
+            {
+              "questionId": "q76",
+              "checked": false
+            },
+            {
+              "questionId": "q77",
+              "checked": false
+            },
+            {
+              "questionId": "q78",
+              "checked": false
+            },
+            {
+              "questionId": "q79",
+              "checked": false
+            },
+            {
+              "questionId": "q80",
+              "checked": false
+            },
+            {
+              "questionId": "q81",
+              "checked": false
+            },
+            {
+              "questionId": "q82",
+              "checked": false
+            },
+            {
+              "questionId": "q83",
+              "checked": false
+            },
+            {
+              "questionId": "q84",
+              "checked": false
+            },
+            {
+              "questionId": "q85",
+              "checked": false
+            },
+            {
+              "questionId": "q86",
+              "checked": false
+            },
+            {
+              "questionId": "q87",
+              "checked": false
+            },
+            {
+              "questionId": "q88",
+              "checked": false
+            },
+            {
+              "questionId": "q89",
+              "checked": false
+            },
+            {
+              "questionId": "q90",
+              "checked": false
+            },
+            {
+              "questionId": "q91",
+              "checked": false
+            },
+            {
+              "questionId": "q92",
+              "checked": false
+            },
+            {
+              "questionId": "q93",
+              "checked": false
+            },
+            {
+              "questionId": "q94",
+              "checked": false
+            },
+            {
+              "questionId": "q95",
+              "checked": false
+            },
+            {
+              "questionId": "q96",
+              "checked": false
+            },
+            {
+              "questionId": "q97",
+              "checked": true
+            }
+          ],
+          "summary": "2 observationer markerade. Fält 1 (röd): Kommunikation och information."
         }
       ],
       "diagnoses": [
@@ -429,6 +828,76 @@
           "label": "autismspektrum"
         }
       ]
+    },
+    {
+      "id": "k003",
+      "label": "Carl",
+      "notes": "",
+      "screenings": [],
+      "diagnoses": []
+    },
+    {
+      "id": "k004",
+      "label": "Diana",
+      "notes": "",
+      "screenings": [],
+      "diagnoses": []
+    },
+    {
+      "id": "k005",
+      "label": "Emil",
+      "notes": "",
+      "screenings": [],
+      "diagnoses": []
+    },
+    {
+      "id": "k006",
+      "label": "Fanny",
+      "notes": "",
+      "screenings": [],
+      "diagnoses": []
+    },
+    {
+      "id": "k007",
+      "label": "Gustav",
+      "notes": "",
+      "screenings": [],
+      "diagnoses": []
+    },
+    {
+      "id": "k008",
+      "label": "Hanna",
+      "notes": "",
+      "screenings": [],
+      "diagnoses": []
+    },
+    {
+      "id": "k009",
+      "label": "Ivan",
+      "notes": "",
+      "screenings": [],
+      "diagnoses": []
+    },
+    {
+      "id": "k010",
+      "label": "Julia",
+      "notes": "",
+      "screenings": [],
+      "diagnoses": []
+    },
+    {
+      "id": "k011",
+      "label": "Karin",
+      "notes": "",
+      "screenings": [],
+      "diagnoses": []
+    },
+    {
+      "id": "k012",
+      "label": "Ludvig",
+      "notes": "",
+      "screenings": [],
+      "diagnoses": []
     }
   ],
   "library": [
@@ -555,5 +1024,59 @@
       "subject": "Schema",
       "description": "Råd om hur schemat kan läggas upp för att minska stress och öka trygghet."
     }
-  ]
+  ],
+  "users": [
+    {
+      "id": "u001",
+      "name": "Anna Lindgren",
+      "role": "supplier"
+    },
+    {
+      "id": "u002",
+      "name": "Erik Bergström",
+      "role": "supplier"
+    },
+    {
+      "id": "u003",
+      "name": "Sara Holmberg",
+      "role": "supplier"
+    },
+    {
+      "id": "u004",
+      "name": "Malin den magnifika",
+      "role": "requester"
+    }
+  ],
+  "requests": [
+    {
+      "id": "req-1779308481410",
+      "requesterId": "u004",
+      "kidIds": [
+        "k001",
+        "k004"
+      ],
+      "supplierIds": [
+        "u001",
+        "u002"
+      ],
+      "note": "",
+      "createdAt": "2026-05-20T20:21:21.410Z",
+      "status": "active"
+    }
+  ],
+  "responses": [
+    {
+      "id": "resp-1779308829589",
+      "requestId": "req-1779308481410",
+      "supplierId": "u001",
+      "kidId": "k001",
+      "answers": {
+        "screeningId": "scr-1779308829538",
+        "traits": "kommunikationsliknande, flexibilitetsliknande"
+      },
+      "lastActivityAt": "2026-05-20T20:27:09.589Z",
+      "submittedAt": "2026-05-20T20:27:09.589Z"
+    }
+  ],
+  "reminders": []
 }
