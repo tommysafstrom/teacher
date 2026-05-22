@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { getUser, getUsers, getKids, getRequests, addRequest } from "@/lib/db";
-import { sendMail, buildRequestEmail } from "@/lib/email";
+import { sendMail, buildRequestEmail, getSupplierEmail } from "@/lib/email";
 import type { Request } from "@/lib/types";
 
 const VALID_KID_ID = /^k\d{3}$/;
@@ -84,10 +84,11 @@ export async function POST(req: NextRequest) {
   const allKids = getKids();
   const kidLabels = request.kidIds.map((id) => allKids.find((k) => k.id === id)?.label ?? id);
   for (const supplierId of request.supplierIds) {
+    const email = getSupplierEmail(supplierId);
+    if (!email) continue;
     const supplier = allUsers.find((u) => u.id === supplierId);
-    if (!supplier?.email) continue;
     const { subject, html } = buildRequestEmail({
-      supplierName: supplier.name,
+      supplierName: supplier?.name ?? supplierId,
       kidLabels,
       requestId: request.id,
       kidIds: request.kidIds,
@@ -95,7 +96,7 @@ export async function POST(req: NextRequest) {
       note: request.note || undefined,
       isReminder: false,
     });
-    sendMail(supplier.email, subject, html).catch(() => {});
+    sendMail(email, subject, html).catch(() => {});
   }
 
   return NextResponse.json(request, { status: 201 });

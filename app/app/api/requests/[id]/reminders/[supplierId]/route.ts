@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { getUser, getUsers, getKids, getRequest, addReminder } from "@/lib/db";
-import { sendMail, buildRequestEmail } from "@/lib/email";
+import { sendMail, buildRequestEmail, getSupplierEmail } from "@/lib/email";
 import type { Reminder } from "@/lib/types";
 
 const VALID_REQUEST_ID = /^req-\d+$/;
@@ -47,12 +47,13 @@ export async function POST(
   await addReminder(reminder);
 
   // Send reminder email to the supplier (fire-and-forget)
-  const supplier = getUsers().find((u) => u.id === supplierId);
-  if (supplier?.email) {
+  const email = getSupplierEmail(supplierId);
+  if (email) {
+    const supplier = getUsers().find((u) => u.id === supplierId);
     const allKids = getKids();
     const kidLabels = request.kidIds.map((kid) => allKids.find((k) => k.id === kid)?.label ?? kid);
     const { subject, html } = buildRequestEmail({
-      supplierName: supplier.name,
+      supplierName: supplier?.name ?? supplierId,
       kidLabels,
       requestId: id,
       kidIds: request.kidIds,
@@ -60,7 +61,7 @@ export async function POST(
       note: request.note || undefined,
       isReminder: true,
     });
-    sendMail(supplier.email, subject, html).catch(() => {});
+    sendMail(email, subject, html).catch(() => {});
   }
 
   return NextResponse.json(reminder, { status: 201 });

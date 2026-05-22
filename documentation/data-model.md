@@ -1,5 +1,7 @@
 # Datamodell
 
+## Befintliga entiteter
+
 ```mermaid
 erDiagram
     KID {
@@ -13,7 +15,8 @@ erDiagram
         string kidId FK
         string date
         string[] traits
-        object raw
+        object answers
+        string summary
     }
 
     DIAGNOSIS {
@@ -37,6 +40,51 @@ erDiagram
     KID ||--o{ DIAGNOSIS : "har"
     DIAGNOSIS }o--o{ MATERIAL : "pekar mot (via challenge-tagg)"
     SCREENING }o--o{ MATERIAL : "pekar mot (via trait-tagg)"
+```
+
+## Nya entiteter — Request & Supply-modulen
+
+```mermaid
+erDiagram
+    USER {
+        string id PK
+        string name
+        string role
+    }
+
+    REQUEST {
+        string id PK
+        string requesterId FK
+        string[] kidIds
+        string[] supplierIds
+        string note
+        string createdAt
+        string status
+    }
+
+    RESPONSE {
+        string id PK
+        string requestId FK
+        string supplierId FK
+        string kidId FK
+        object answers
+        string submittedAt
+        string lastActivityAt
+    }
+
+    REMINDER {
+        string id PK
+        string requestId FK
+        string supplierId FK
+        string sentAt
+    }
+
+    USER ||--o{ REQUEST : "skapar (requester)"
+    REQUEST ||--o{ RESPONSE : "har"
+    REQUEST ||--o{ REMINDER : "har"
+    USER ||--o{ RESPONSE : "fyller i (supplier)"
+    USER ||--o{ REMINDER : "får (supplier)"
+    KID ||--o{ RESPONSE : "beskrivs av"
 ```
 
 ## Härledda anpassningar (ej lagrade)

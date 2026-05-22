@@ -801,6 +801,405 @@
             }
           ],
           "summary": "2 observationer markerade. Fält 1 (röd): Kommunikation och information."
+        },
+        {
+          "id": "scr-1779311240310",
+          "date": "2026-05-20",
+          "traits": [
+            "kommunikationsliknande",
+            "planeringsliknande"
+          ],
+          "answers": [
+            {
+              "questionId": "q1",
+              "checked": true
+            },
+            {
+              "questionId": "q2",
+              "checked": true
+            },
+            {
+              "questionId": "q3",
+              "checked": true
+            },
+            {
+              "questionId": "q4",
+              "checked": true
+            },
+            {
+              "questionId": "q5",
+              "checked": true
+            },
+            {
+              "questionId": "q6",
+              "checked": true
+            },
+            {
+              "questionId": "q7",
+              "checked": false
+            },
+            {
+              "questionId": "q8",
+              "checked": false
+            },
+            {
+              "questionId": "q9",
+              "checked": false
+            },
+            {
+              "questionId": "q10",
+              "checked": false
+            },
+            {
+              "questionId": "q11",
+              "checked": false
+            },
+            {
+              "questionId": "q12",
+              "checked": false
+            },
+            {
+              "questionId": "q13",
+              "checked": false
+            },
+            {
+              "questionId": "q14",
+              "checked": false
+            },
+            {
+              "questionId": "q15",
+              "checked": false
+            },
+            {
+              "questionId": "q16",
+              "checked": true
+            },
+            {
+              "questionId": "q17",
+              "checked": true
+            },
+            {
+              "questionId": "q18",
+              "checked": true
+            },
+            {
+              "questionId": "q19",
+              "checked": true
+            },
+            {
+              "questionId": "q20",
+              "checked": true
+            },
+            {
+              "questionId": "q21",
+              "checked": false
+            },
+            {
+              "questionId": "q22",
+              "checked": false
+            },
+            {
+              "questionId": "q23",
+              "checked": false
+            },
+            {
+              "questionId": "q24",
+              "checked": false
+            },
+            {
+              "questionId": "q25",
+              "checked": false
+            },
+            {
+              "questionId": "q26",
+              "checked": false
+            },
+            {
+              "questionId": "q27",
+              "checked": false
+            },
+            {
+              "questionId": "q28",
+              "checked": false
+            },
+            {
+              "questionId": "q29",
+              "checked": false
+            },
+            {
+              "questionId": "q30",
+              "checked": false
+            },
+            {
+              "questionId": "q31",
+              "checked": false
+            },
+            {
+              "questionId": "q32",
+              "checked": false
+            },
+            {
+              "questionId": "q33",
+              "checked": false
+            },
+            {
+              "questionId": "q34",
+              "checked": false
+            },
+            {
+              "questionId": "q35",
+              "checked": false
+            },
+            {
+              "questionId": "q36",
+              "checked": false
+            },
+            {
+              "questionId": "q37",
+              "checked": false
+            },
+            {
+              "questionId": "q38",
+              "checked": false
+            },
+            {
+              "questionId": "q39",
+              "checked": false
+            },
+            {
+              "questionId": "q40",
+              "checked": false
+            },
+            {
+              "questionId": "q41",
+              "checked": false
+            },
+            {
+              "questionId": "q42",
+              "checked": false
+            },
+            {
+              "questionId": "q43",
+              "checked": false
+            },
+            {
+              "questionId": "q44",
+              "checked": false
+            },
+            {
+              "questionId": "q45",
+              "checked": false
+            },
+            {
+              "questionId": "q46",
+              "checked": false
+            },
+            {
+              "questionId": "q47",
+              "checked": false
+            },
+            {
+              "questionId": "q48",
+              "checked": false
+            },
+            {
+              "questionId": "q49",
+              "checked": false
+            },
+            {
+              "questionId": "q50",
+              "checked": false
+            },
+            {
+              "questionId": "q51",
+              "checked": false
+            },
+            {
+              "questionId": "q52",
+              "checked": false
+            },
+            {
+              "questionId": "q53",
+              "checked": false
+            },
+            {
+              "questionId": "q54",
+              "checked": false
+            },
+            {
+              "questionId": "q55",
+              "checked": false
+            },
+            {
+              "questionId": "q56",
+              "checked": false
+            },
+            {
+              "questionId": "q57",
+              "checked": false
+            },
+            {
+              "questionId": "q58",
+              "checked": false
+            },
+            {
+              "questionId": "q59",
+              "checked": false
+            },
+            {
+              "questionId": "q60",
+              "checked": false
+            },
+            {
+              "questionId": "q61",
+              "checked": false
+            },
+            {
+              "questionId": "q62",
+              "checked": false
+            },
+            {
+              "questionId": "q63",
+              "checked": false
+            },
+            {
+              "questionId": "q64",
+              "checked": false
+            },
+            {
+              "questionId": "q65",
+              "checked": false
+            },
+            {
+              "questionId": "q66",
+              "checked": false
+            },
+            {
+              "questionId": "q67",
+              "checked": false
+            },
+            {
+              "questionId": "q68",
+              "checked": false
+            },
+            {
+              "questionId": "q69",
+              "checked": false
+            },
+            {
+              "questionId": "q70",
+              "checked": false
+            },
+            {
+              "questionId": "q71",
+              "checked": false
+            },
+            {
+              "questionId": "q72",
+              "checked": false
+            },
+            {
+              "questionId": "q73",
+              "checked": false
+            },
+            {
+              "questionId": "q74",
+              "checked": false
+            },
+            {
+              "questionId": "q75",
+              "checked": false
+            },
+            {
+              "questionId": "q76",
+              "checked": false
+            },
+            {
+              "questionId": "q77",
+              "checked": false
+            },
+            {
+              "questionId": "q78",
+              "checked": false
+            },
+            {
+              "questionId": "q79",
+              "checked": false
+            },
+            {
+              "questionId": "q80",
+              "checked": false
+            },
+            {
+              "questionId": "q81",
+              "checked": false
+            },
+            {
+              "questionId": "q82",
+              "checked": false
+            },
+            {
+              "questionId": "q83",
+              "checked": false
+            },
+            {
+              "questionId": "q84",
+              "checked": false
+            },
+            {
+              "questionId": "q85",
+              "checked": false
+            },
+            {
+              "questionId": "q86",
+              "checked": false
+            },
+            {
+              "questionId": "q87",
+              "checked": false
+            },
+            {
+              "questionId": "q88",
+              "checked": false
+            },
+            {
+              "questionId": "q89",
+              "checked": false
+            },
+            {
+              "questionId": "q90",
+              "checked": false
+            },
+            {
+              "questionId": "q91",
+              "checked": false
+            },
+            {
+              "questionId": "q92",
+              "checked": false
+            },
+            {
+              "questionId": "q93",
+              "checked": false
+            },
+            {
+              "questionId": "q94",
+              "checked": false
+            },
+            {
+              "questionId": "q95",
+              "checked": false
+            },
+            {
+              "questionId": "q96",
+              "checked": false
+            },
+            {
+              "questionId": "q97",
+              "checked": false
+            }
+          ],
+          "summary": "11 observationer markerade. Fält 1 (röd): Kommunikation och information, Planering och organisation."
         }
       ],
       "diagnoses": [
@@ -1066,6 +1465,20 @@
       "note": "",
       "createdAt": "2026-05-20T20:21:21.410Z",
       "status": "active"
+    },
+    {
+      "id": "req-1779311421737",
+      "requesterId": "u004",
+      "kidIds": [
+        "k012",
+        "k011"
+      ],
+      "supplierIds": [
+        "u003"
+      ],
+      "note": "alles",
+      "createdAt": "2026-05-20T21:10:21.737Z",
+      "status": "active"
     }
   ],
   "responses": [
@@ -1074,9 +1487,20 @@
       "requestId": "req-1779308481410",
       "supplierId": "u001",
       "kidId": "k001",
-      "answers": {},
-      "lastActivityAt": "2026-05-20T20:52:50.675Z"
+      "answers": {
+        "screeningId": "scr-1779311240310",
+        "traits": "kommunikationsliknande, planeringsliknande"
+      },
+      "lastActivityAt": "2026-05-20T21:07:20.456Z",
+      "submittedAt": "2026-05-20T21:07:20.456Z"
     }
   ],
-  "reminders": []
+  "reminders": [
+    {
+      "id": "rem-1779310742220",
+      "requestId": "req-1779308481410",
+      "supplierId": "u001",
+      "sentAt": "2026-05-20T20:59:02.220Z"
+    }
+  ]
 }

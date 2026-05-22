@@ -12,6 +12,44 @@ async function getCurrentUser() {
   return getUser(userId) ?? null;
 }
 
+export async function POST(
+  _req: NextRequest,
+  { params }: { params: Promise<{ id: string; supplierId: string }> }
+) {
+  const { id, supplierId } = await params;
+
+  if (!VALID_REQUEST_ID.test(id)) {
+    return NextResponse.json({ error: "Ogiltigt förfrågnings-ID" }, { status: 400 });
+  }
+  if (!VALID_USER_ID.test(supplierId)) {
+    return NextResponse.json({ error: "Ogiltigt leverantörs-ID" }, { status: 400 });
+  }
+
+  const user = await getCurrentUser();
+  if (!user) {
+    return NextResponse.json({ error: "Ej inloggad" }, { status: 401 });
+  }
+  if (user.role !== "requester") {
+    return NextResponse.json({ error: "Endast samordnare kan lägga till tilldelningar" }, { status: 403 });
+  }
+
+  const request = getRequest(id);
+  if (!request) {
+    return NextResponse.json({ error: "Förfrågan hittades inte" }, { status: 404 });
+  }
+
+  if (request.supplierIds.includes(supplierId)) {
+    return NextResponse.json({ ok: true });
+  }
+
+  await updateRequest(id, (r) => ({
+    ...r,
+    supplierIds: [...r.supplierIds, supplierId],
+  }));
+
+  return NextResponse.json({ ok: true });
+}
+
 export async function DELETE(
   _req: NextRequest,
   { params }: { params: Promise<{ id: string; supplierId: string }> }

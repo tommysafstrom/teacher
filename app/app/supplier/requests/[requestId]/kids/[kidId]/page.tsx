@@ -35,6 +35,46 @@ function kidStatusInRequest(
   return "started";
 }
 
+function kidProgress(req: RequestDetail, kidId: string, supplierId: string): number {
+  const r = req.responses.find((x) => x.supplierId === supplierId && x.kidId === kidId);
+  if (!r) return 0;
+  if (r.submittedAt) return 100;
+  const trueCount = Object.values(r.answers).filter((v) => v === "true").length;
+  return Math.round((trueCount / QUESTIONS.length) * 100);
+}
+
+function WheelGraph({ percent }: { percent: number }) {
+  const r = 6;
+  const cx = 8;
+  const circ = 2 * Math.PI * r;
+  const done = percent === 100;
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" className="flex-shrink-0">
+      {done ? (
+        <>
+          <circle cx={cx} cy={cx} r={7} fill="#16a34a" />
+          <path d="M4.5 8.5 L6.5 10.5 L11 6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+        </>
+      ) : (
+        <>
+          <circle cx={cx} cy={cx} r={r} fill="none" stroke="#d1d5db" strokeWidth="2" />
+          {percent > 0 && (
+            <circle
+              cx={cx} cy={cx} r={r}
+              fill="none"
+              stroke="#16a34a"
+              strokeWidth="2"
+              strokeDasharray={`${(percent / 100) * circ} ${circ}`}
+              strokeLinecap="round"
+              transform="rotate(-90 8 8)"
+            />
+          )}
+        </>
+      )}
+    </svg>
+  );
+}
+
 function isOverdue(dueDate?: string): boolean {
   if (!dueDate) return false;
   return new Date(dueDate) < new Date(new Date().toDateString());
@@ -269,12 +309,7 @@ export default function SupplierAnswerPage({
                                 : "text-gray-700 hover:bg-gray-100"
                             }`}
                           >
-                            {status === "submitted" && (
-                              <span className="text-green-600 font-bold text-xs">✓</span>
-                            )}
-                            {status === "started" && (
-                              <span className="text-yellow-500 font-bold text-base leading-none">·</span>
-                            )}
+                            <WheelGraph percent={kidProgress(req, kid, currentUser?.id ?? "")} />
                             <span className={status === "submitted" ? "text-gray-500" : ""}>{getKidLabel(kid)}</span>
                           </Link>
                         </li>

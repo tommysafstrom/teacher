@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { QUESTIONS } from "@/lib/screening";
 import type { Request, Response, Kid } from "@/lib/types";
 
 type RequestDetail = Request & { responses: Response[] };
@@ -15,6 +16,46 @@ function kidStatus(
   if (!r) return "not_started";
   if (r.submittedAt) return "submitted";
   return "started";
+}
+
+function kidProgress(responses: Response[], kidId: string): number {
+  const r = responses.find((x) => x.kidId === kidId);
+  if (!r) return 0;
+  if (r.submittedAt) return 100;
+  const trueCount = Object.values(r.answers).filter((v) => v === "true").length;
+  return Math.round((trueCount / QUESTIONS.length) * 100);
+}
+
+function WheelGraph({ percent }: { percent: number }) {
+  const r = 6;
+  const cx = 8;
+  const circ = 2 * Math.PI * r;
+  const done = percent === 100;
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" className="flex-shrink-0">
+      {done ? (
+        <>
+          <circle cx={cx} cy={cx} r={7} fill="#16a34a" />
+          <path d="M4.5 8.5 L6.5 10.5 L11 6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+        </>
+      ) : (
+        <>
+          <circle cx={cx} cy={cx} r={r} fill="none" stroke="#d1d5db" strokeWidth="2" />
+          {percent > 0 && (
+            <circle
+              cx={cx} cy={cx} r={r}
+              fill="none"
+              stroke="#16a34a"
+              strokeWidth="2"
+              strokeDasharray={`${(percent / 100) * circ} ${circ}`}
+              strokeLinecap="round"
+              transform="rotate(-90 8 8)"
+            />
+          )}
+        </>
+      )}
+    </svg>
+  );
 }
 
 function StatusBadge({ status }: { status: "submitted" | "started" | "not_started" }) {
@@ -110,9 +151,7 @@ export default function SupplierPage() {
                       className="flex items-center justify-between bg-gray-50 rounded px-3 py-2"
                     >
                       <div className="flex items-center gap-2">
-                        {status === "submitted" ? (
-                          <span className="text-green-600 font-bold text-sm">✓</span>
-                        ) : null}
+                        <WheelGraph percent={kidProgress(myResponses, kidId)} />
                         <span className={`text-sm font-medium ${status === "submitted" ? "text-gray-500" : ""}`}>
                           {getKidLabel(kidId)}
                         </span>

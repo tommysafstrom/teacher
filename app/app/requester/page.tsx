@@ -45,6 +45,7 @@ export default function RequesterPage() {
   const router = useRouter();
   const [requests, setRequests] = useState<RequestDetail[]>([]);
   const [users, setUsers] = useState<User[]>([]);
+  const [kids, setKids] = useState<Kid[]>([]);
   const [loading, setLoading] = useState(true);
 
   async function load() {
@@ -57,12 +58,14 @@ export default function RequesterPage() {
       }
     }
 
-    const [reqRes, usersRes] = await Promise.all([
+    const [reqRes, usersRes, kidsRes] = await Promise.all([
       fetch("/api/requests"),
       fetch("/api/users"),
+      fetch("/api/kids"),
     ]);
     const allRequests: Request[] = await reqRes.json();
     const allUsers: User[] = await usersRes.json();
+    const allKids: Kid[] = await kidsRes.json();
 
     const details = await Promise.all(
       allRequests
@@ -74,6 +77,7 @@ export default function RequesterPage() {
     );
     setRequests(details);
     setUsers(allUsers);
+    setKids(allKids);
     setLoading(false);
   }
 
@@ -92,7 +96,7 @@ export default function RequesterPage() {
   }
 
   const getUserName = (id: string) => users.find((u) => u.id === id)?.name ?? id;
-  const suppliers = users.filter((u) => u.role === "supplier");
+  const getKidLabel = (id: string) => kids.find((k) => k.id === id)?.label ?? id;
 
   if (loading) return <p className="text-gray-400">Laddar...</p>;
 
@@ -133,8 +137,15 @@ export default function RequesterPage() {
                     </p>
                   )}
                   <p className="text-sm text-gray-600 mt-1">
-                    {request.kidIds.length} elev(er) · {submittedCount}/{expectedCount} svar inskickade
+                    {submittedCount}/{expectedCount} svar inskickade
                   </p>
+                  <div className="flex flex-wrap gap-1 mt-1">
+                    {request.kidIds.map((kidId) => (
+                      <span key={kidId} className="inline-block px-2 py-0.5 rounded text-xs bg-blue-50 text-blue-700 border border-blue-100">
+                        {getKidLabel(kidId)}
+                      </span>
+                    ))}
+                  </div>
                   {request.note && (
                     <p className="text-sm text-gray-500 mt-1 italic">{request.note}</p>
                   )}

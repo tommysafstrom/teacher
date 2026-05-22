@@ -39,6 +39,7 @@ export default function RequesterDetailPage({ params }: { params: Promise<{ id: 
   const [users, setUsers] = useState<User[]>([]);
   const [kids, setKids] = useState<Kid[]>([]);
   const [loading, setLoading] = useState(true);
+  const [addSupplierId, setAddSupplierId] = useState("");
 
   async function load() {
     const [detailRes, usersRes, kidsRes] = await Promise.all([
@@ -56,6 +57,18 @@ export default function RequesterDetailPage({ params }: { params: Promise<{ id: 
     load();
   }, [id]);
 
+  async function handleAddSupplier() {
+    if (!addSupplierId) return;
+    await fetch(`/api/requests/${id}/suppliers/${addSupplierId}`, { method: "POST" });
+    setAddSupplierId("");
+    load();
+  }
+
+  async function handleRemoveSupplier(supplierId: string) {
+    await fetch(`/api/requests/${id}/suppliers/${supplierId}`, { method: "DELETE" });
+    load();
+  }
+
   async function handleReminder(supplierId: string) {
     await fetch(`/api/requests/${id}/reminders/${supplierId}`, { method: "POST" });
     load();
@@ -69,6 +82,9 @@ export default function RequesterDetailPage({ params }: { params: Promise<{ id: 
 
   const requestKids = detail.kidIds;
   const requestSuppliers = detail.supplierIds;
+  const availableSuppliers = users.filter(
+    (u) => u.role === "supplier" && !requestSuppliers.includes(u.id)
+  );
 
   return (
     <div>
@@ -133,6 +149,48 @@ export default function RequesterDetailPage({ params }: { params: Promise<{ id: 
             </tbody>
           </table>
         </div>
+      </section>
+
+      {/* Supplier management */}
+      <section className="mb-8">
+        <h2 className="text-lg font-semibold mb-3">Tilldelade leverantörer</h2>
+        <div className="space-y-2 mb-3">
+          {requestSuppliers.map((sId) => (
+            <div key={sId} className="flex items-center justify-between bg-white border border-gray-200 rounded-lg px-4 py-2">
+              <span className="text-sm font-medium">{getUserName(sId)}</span>
+              <button
+                onClick={() => handleRemoveSupplier(sId)}
+                className="text-xs text-gray-400 hover:text-red-500 transition"
+              >
+                Ta bort
+              </button>
+            </div>
+          ))}
+          {requestSuppliers.length === 0 && (
+            <p className="text-sm text-gray-400">Inga leverantörer tilldelade.</p>
+          )}
+        </div>
+        {availableSuppliers.length > 0 && (
+          <div className="flex gap-2">
+            <select
+              value={addSupplierId}
+              onChange={(e) => setAddSupplierId(e.target.value)}
+              className="text-sm border border-gray-300 rounded px-2 py-1.5 flex-1 max-w-xs"
+            >
+              <option value="">Välj leverantör...</option>
+              {availableSuppliers.map((u) => (
+                <option key={u.id} value={u.id}>{u.name}</option>
+              ))}
+            </select>
+            <button
+              onClick={handleAddSupplier}
+              disabled={!addSupplierId}
+              className="text-sm bg-blue-600 text-white px-3 py-1.5 rounded hover:bg-blue-700 transition disabled:opacity-40"
+            >
+              Lägg till
+            </button>
+          </div>
+        )}
       </section>
 
       {/* Reminder panel */}
