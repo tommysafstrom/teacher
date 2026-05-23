@@ -159,7 +159,7 @@ export default function KidsOverviewPage() {
     <div>
       <h1 className="text-2xl font-bold mb-4">Elever</h1>
 
-      <div className="flex gap-2 mb-6">
+      <div className="flex flex-wrap gap-2 mb-6">
         {filterConfig.map(({ key, label }) => (
           <button
             key={key}

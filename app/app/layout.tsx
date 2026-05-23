@@ -29,32 +29,32 @@ export default async function RootLayout({
         />
       </head>
       <body className="min-h-full bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 font-sans">
-        <header className="bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700 px-6 py-3">
-          <div className="max-w-5xl mx-auto flex items-center justify-between">
-            <nav className="flex items-center gap-5">
+        <header className="bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700 px-4 py-3">
+          <div className="max-w-2xl mx-auto flex items-center justify-between gap-2">
+            <nav className="flex items-center gap-3 sm:gap-5 min-w-0">
               {currentUser?.role === "requester" && (
                 <>
-                  <Link href="/requester" className="text-sm font-medium text-blue-700 dark:text-blue-400 hover:underline">
+                  <Link href="/requester" className="text-sm font-medium text-blue-700 dark:text-blue-400 hover:underline whitespace-nowrap">
                     Förfrågningar
                   </Link>
-                  <Link href="/kids" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">
+                  <Link href="/kids" className="text-sm text-gray-600 dark:text-gray-300 hover:underline whitespace-nowrap">
                     Elever
                   </Link>
-                  <Link href="/library" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">
-                    Materialbibliotek
+                  <Link href="/library" className="text-sm text-gray-600 dark:text-gray-300 hover:underline whitespace-nowrap">
+                    Bibliotek
                   </Link>
                 </>
               )}
               {currentUser?.role === "supplier" && (
                 <>
-                  <Link href="/supplier" className="text-sm font-medium text-blue-700 dark:text-blue-400 hover:underline">
-                    Mina förfrågningar
+                  <Link href="/supplier" className="text-sm font-medium text-blue-700 dark:text-blue-400 hover:underline whitespace-nowrap">
+                    Förfrågningar
                   </Link>
-                  <Link href="/kids" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">
+                  <Link href="/kids" className="text-sm text-gray-600 dark:text-gray-300 hover:underline whitespace-nowrap">
                     Elever
                   </Link>
-                  <Link href="/library" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">
-                    Materialbibliotek
+                  <Link href="/library" className="text-sm text-gray-600 dark:text-gray-300 hover:underline whitespace-nowrap">
+                    Bibliotek
                   </Link>
                 </>
               )}
@@ -64,20 +64,24 @@ export default async function RootLayout({
                 </Link>
               )}
             </nav>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
               {currentUser && (
-                <span className="text-sm text-gray-600 dark:text-gray-400">{currentUser.name}</span>
+                <span className="hidden sm:inline text-sm text-gray-600 dark:text-gray-400 truncate max-w-[120px]">{currentUser.name}</span>
               )}
               {currentUser && (
-                <Link href="/login" className="text-sm text-gray-400 dark:text-gray-500 hover:underline">
-                  Byt användare
+                <Link href="/login" className="text-xs sm:text-sm text-gray-400 dark:text-gray-500 hover:underline whitespace-nowrap">
+                  <span className="hidden sm:inline">Byt användare</span>
+                  <span className="sm:hidden">Byt</span>
                 </Link>
               )}
+              <span className="hidden lg:inline text-xs text-gray-300 dark:text-gray-600 font-mono select-none" title="Build">
+                #{process.env.NEXT_PUBLIC_BUILD_NR}
+              </span>
               <ThemeToggle />
             </div>
           </div>
         </header>
-        <main className="max-w-5xl mx-auto px-4 py-8">{children}</main>
+        <main className="max-w-2xl mx-auto px-4 py-8">{children}</main>
       </body>
     </html>
   );
