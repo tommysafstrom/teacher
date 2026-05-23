@@ -24,18 +24,18 @@ function supplierStatus(
 function StatusBadge({ status }: { status: "submitted" | "started" | "not_started" }) {
   if (status === "submitted")
     return (
-      <span className="inline-block px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">
+      <span className="inline-block px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300">
         Inskickad
       </span>
     );
   if (status === "started")
     return (
-      <span className="inline-block px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-800">
+      <span className="inline-block px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900/40 dark:text-yellow-300">
         Påbörjad
       </span>
     );
   return (
-    <span className="inline-block px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-600">
+    <span className="inline-block px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300">
       Ej påbörjad
     </span>
   );
@@ -98,7 +98,7 @@ export default function RequesterPage() {
   const getUserName = (id: string) => users.find((u) => u.id === id)?.name ?? id;
   const getKidLabel = (id: string) => kids.find((k) => k.id === id)?.label ?? id;
 
-  if (loading) return <p className="text-gray-400">Laddar...</p>;
+  if (loading) return <p className="text-gray-400 dark:text-gray-500">Laddar...</p>;
 
   return (
     <div>
@@ -113,7 +113,7 @@ export default function RequesterPage() {
       </div>
 
       {requests.length === 0 && (
-        <p className="text-gray-500">Inga aktiva förfrågningar.</p>
+        <p className="text-gray-500 dark:text-gray-400">Inga aktiva förfrågningar.</p>
       )}
 
       <ul className="space-y-6">
@@ -125,29 +125,29 @@ export default function RequesterPage() {
           const expectedCount = request.supplierIds.length * request.kidIds.length;
 
           return (
-            <li key={request.id} className="bg-white border border-gray-200 rounded-lg p-5">
+            <li key={request.id} className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-5">
               <div className="flex items-start justify-between mb-3">
                 <div>
-                  <p className="text-sm text-gray-400">
+                  <p className="text-sm text-gray-400 dark:text-gray-500">
                     Skapad {new Date(request.createdAt).toLocaleDateString("sv-SE")}
                   </p>
                   {request.dueDate && (
-                    <p className={`text-sm mt-0.5 ${new Date(request.dueDate) < new Date(new Date().toDateString()) ? "underline text-red-600" : "text-gray-500"}`}>
+                    <p className={`text-sm mt-0.5 ${new Date(request.dueDate) < new Date(new Date().toDateString()) ? "underline text-red-600" : "text-gray-500 dark:text-gray-400"}`}>
                       Svaras senast {new Date(request.dueDate).toLocaleDateString("sv-SE")}
                     </p>
                   )}
-                  <p className="text-sm text-gray-600 mt-1">
+                  <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
                     {submittedCount}/{expectedCount} svar inskickade
                   </p>
                   <div className="flex flex-wrap gap-1 mt-1">
                     {request.kidIds.map((kidId) => (
-                      <span key={kidId} className="inline-block px-2 py-0.5 rounded text-xs bg-blue-50 text-blue-700 border border-blue-100">
+                      <span key={kidId} className="inline-block px-2 py-0.5 rounded text-xs bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border border-blue-100 dark:border-blue-700">
                         {getKidLabel(kidId)}
                       </span>
                     ))}
                   </div>
                   {request.note && (
-                    <p className="text-sm text-gray-500 mt-1 italic">{request.note}</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 italic">{request.note}</p>
                   )}
                 </div>
                 <div className="flex gap-2">
@@ -170,7 +170,7 @@ export default function RequesterPage() {
                 {request.supplierIds.map((sId) => {
                   const status = supplierStatus(request, sId);
                   return (
-                    <div key={sId} className="flex items-center justify-between bg-gray-50 rounded px-3 py-2">
+                    <div key={sId} className="flex items-center justify-between bg-gray-50 dark:bg-gray-700/50 rounded px-3 py-2">
                       <div className="flex items-center gap-3">
                         <span className="text-sm font-medium">{getUserName(sId)}</span>
                         <StatusBadge status={status} />

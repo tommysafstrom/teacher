@@ -47,14 +47,14 @@ export default function LibraryPage() {
           ← Tillbaka
         </Link>
         <h1 className="text-2xl font-bold mt-2">Materialbibliotek</h1>
-        <p className="text-sm text-gray-500 mt-1">
+        <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
           Filtrerat material för olika utmaningar och ämnen.
         </p>
       </div>
 
       {/* Filter */}
       <div className="mb-6">
-        <label className="text-sm font-medium text-gray-700 block mb-2">
+        <label className="text-sm font-medium text-gray-700 dark:text-gray-200 block mb-2">
           Filtrera på utmaning
         </label>
         <div className="flex flex-wrap gap-2">
@@ -63,7 +63,7 @@ export default function LibraryPage() {
             className={`px-3 py-1 rounded text-sm border transition ${
               filter === ""
                 ? "bg-blue-600 text-white border-blue-600"
-                : "bg-white text-gray-600 border-gray-300 hover:border-blue-400"
+                : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:border-blue-400"
             }`}
           >
             Alla
@@ -75,7 +75,7 @@ export default function LibraryPage() {
               className={`px-3 py-1 rounded text-sm border transition ${
                 filter === c.value
                   ? "bg-blue-600 text-white border-blue-600"
-                  : "bg-white text-gray-600 border-gray-300 hover:border-blue-400"
+                  : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:border-blue-400"
               }`}
             >
               {c.label}
@@ -86,23 +86,23 @@ export default function LibraryPage() {
 
       {/* Items */}
       {items.length === 0 ? (
-        <p className="text-sm text-gray-400">Inga material hittades.</p>
+        <p className="text-sm text-gray-400 dark:text-gray-500">Inga material hittades.</p>
       ) : (
         <ul className="space-y-3">
           {items.map((item) => (
             <li
               key={item.id}
-              className="bg-white border border-gray-200 rounded-lg px-5 py-4"
+              className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-5 py-4"
             >
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <p className="font-medium text-sm">{item.title}</p>
-                  <p className="text-xs text-gray-500 mt-1">{item.description}</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{item.description}</p>
                   <div className="flex flex-wrap gap-1 mt-2">
                     {item.challenges.map((c) => (
                       <span
                         key={c}
-                        className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded"
+                        className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-0.5 rounded"
                       >
                         {c}
                       </span>
@@ -110,10 +110,10 @@ export default function LibraryPage() {
                   </div>
                 </div>
                 <div className="text-right shrink-0">
-                  <span className="text-xs bg-blue-50 border border-blue-200 text-blue-700 px-2 py-0.5 rounded">
+                  <span className="text-xs bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700 text-blue-700 dark:text-blue-300 px-2 py-0.5 rounded">
                     {TYPE_LABELS[item.type] ?? item.type}
                   </span>
-                  <p className="text-xs text-gray-400 mt-1">{item.subject}</p>
+                  <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">{item.subject}</p>
                   {item.url && (
                     <a
                       href={item.url}

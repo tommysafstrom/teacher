@@ -18,19 +18,19 @@ function supplierStatusForKid(
 
 function CellBadge({ status, lastActivity }: { status: "submitted" | "started" | "not_started"; lastActivity?: string }) {
   if (status === "submitted")
-    return <span className="text-xs text-green-700 font-medium">Inskickad</span>;
+    return <span className="text-xs text-green-700 dark:text-green-400 font-medium">Inskickad</span>;
   if (status === "started")
     return (
-      <span className="text-xs text-yellow-700 font-medium">
+      <span className="text-xs text-yellow-700 dark:text-yellow-400 font-medium">
         Påbörjad
         {lastActivity && (
-          <span className="ml-1 text-gray-400">
+          <span className="ml-1 text-gray-400 dark:text-gray-500">
             ({new Date(lastActivity).toLocaleString("sv-SE", { dateStyle: "short", timeStyle: "short" })})
           </span>
         )}
       </span>
     );
-  return <span className="text-xs text-gray-400">Ej påbörjad</span>;
+  return <span className="text-xs text-gray-400 dark:text-gray-500">Ej påbörjad</span>;
 }
 
 export default function RequesterDetailPage({ params }: { params: Promise<{ id: string }> }) {
@@ -74,7 +74,7 @@ export default function RequesterDetailPage({ params }: { params: Promise<{ id: 
     load();
   }
 
-  if (loading) return <p className="text-gray-400">Laddar...</p>;
+  if (loading) return <p className="text-gray-400 dark:text-gray-500">Laddar...</p>;
   if (!detail) return <p className="text-red-500">Förfrågan hittades inte.</p>;
 
   const getUserName = (uid: string) => users.find((u) => u.id === uid)?.name ?? uid;
@@ -93,31 +93,31 @@ export default function RequesterDetailPage({ params }: { params: Promise<{ id: 
           ← Tillbaka
         </a>
         <h1 className="text-2xl font-bold mt-2">Förfrågan detaljer</h1>
-        <p className="text-sm text-gray-400">
+        <p className="text-sm text-gray-400 dark:text-gray-500">
           Skapad {new Date(detail.createdAt).toLocaleDateString("sv-SE")}
         </p>
         {detail.dueDate && (
-          <p className={`text-sm mt-0.5 ${new Date(detail.dueDate) < new Date(new Date().toDateString()) ? "underline text-red-600" : "text-gray-500"}`}>
+          <p className={`text-sm mt-0.5 ${new Date(detail.dueDate) < new Date(new Date().toDateString()) ? "underline text-red-600" : "text-gray-500 dark:text-gray-400"}`}>
             Svaras senast {new Date(detail.dueDate).toLocaleDateString("sv-SE")}
           </p>
         )}
-        {detail.note && <p className="text-sm text-gray-600 mt-1 italic">{detail.note}</p>}
+        {detail.note && <p className="text-sm text-gray-600 dark:text-gray-300 mt-1 italic">{detail.note}</p>}
       </div>
 
       {/* Answer table */}
       <section className="mb-8">
         <h2 className="text-lg font-semibold mb-3">Svarsstatus</h2>
         <div className="overflow-x-auto">
-          <table className="min-w-full border border-gray-200 rounded-lg text-sm">
+          <table className="min-w-full border border-gray-200 dark:border-gray-700 rounded-lg text-sm">
             <thead>
-              <tr className="bg-gray-50">
-                <th className="text-left px-3 py-2 font-medium text-gray-600 border-b border-gray-200">
+              <tr className="bg-gray-50 dark:bg-gray-800">
+                <th className="text-left px-3 py-2 font-medium text-gray-600 dark:text-gray-300 border-b border-gray-200 dark:border-gray-700">
                   Elev
                 </th>
                 {requestSuppliers.map((sId) => (
                   <th
                     key={sId}
-                    className="text-left px-3 py-2 font-medium text-gray-600 border-b border-gray-200"
+                    className="text-left px-3 py-2 font-medium text-gray-600 dark:text-gray-300 border-b border-gray-200 dark:border-gray-700"
                   >
                     {getUserName(sId)}
                   </th>
@@ -126,7 +126,7 @@ export default function RequesterDetailPage({ params }: { params: Promise<{ id: 
             </thead>
             <tbody>
               {requestKids.map((kidId) => (
-                <tr key={kidId} className="border-b border-gray-100">
+                <tr key={kidId} className="border-b border-gray-100 dark:border-gray-700">
                   <td className="px-3 py-2 font-medium">{getKidLabel(kidId)}</td>
                   {requestSuppliers.map((sId) => {
                     const status = supplierStatusForKid(detail.responses, sId, kidId);
@@ -137,7 +137,7 @@ export default function RequesterDetailPage({ params }: { params: Promise<{ id: 
                       <td key={sId} className="px-3 py-2">
                         <CellBadge status={status} lastActivity={resp?.lastActivityAt} />
                         {status === "submitted" && resp && (
-                          <p className="mt-1 text-xs text-gray-500">
+                          <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
                             {resp.answers.traits || "Inga utmärkande drag"}
                           </p>
                         )}
@@ -156,7 +156,7 @@ export default function RequesterDetailPage({ params }: { params: Promise<{ id: 
         <h2 className="text-lg font-semibold mb-3">Tilldelade leverantörer</h2>
         <div className="space-y-2 mb-3">
           {requestSuppliers.map((sId) => (
-            <div key={sId} className="flex items-center justify-between bg-white border border-gray-200 rounded-lg px-4 py-2">
+            <div key={sId} className="flex items-center justify-between bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-2">
               <span className="text-sm font-medium">{getUserName(sId)}</span>
               <button
                 onClick={() => handleRemoveSupplier(sId)}
@@ -167,7 +167,7 @@ export default function RequesterDetailPage({ params }: { params: Promise<{ id: 
             </div>
           ))}
           {requestSuppliers.length === 0 && (
-            <p className="text-sm text-gray-400">Inga leverantörer tilldelade.</p>
+            <p className="text-sm text-gray-400 dark:text-gray-500">Inga leverantörer tilldelade.</p>
           )}
         </div>
         {availableSuppliers.length > 0 && (
@@ -175,7 +175,7 @@ export default function RequesterDetailPage({ params }: { params: Promise<{ id: 
             <select
               value={addSupplierId}
               onChange={(e) => setAddSupplierId(e.target.value)}
-              className="text-sm border border-gray-300 rounded px-2 py-1.5 flex-1 max-w-xs"
+              className="text-sm border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 rounded px-2 py-1.5 flex-1 max-w-xs"
             >
               <option value="">Välj leverantör...</option>
               {availableSuppliers.map((u) => (
@@ -208,10 +208,10 @@ export default function RequesterDetailPage({ params }: { params: Promise<{ id: 
               : null;
 
             return (
-              <div key={sId} className="bg-white border border-gray-200 rounded-lg px-4 py-3 flex items-center justify-between">
+              <div key={sId} className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium">{getUserName(sId)}</p>
-                  <p className="text-xs text-gray-500 mt-0.5">
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
                     {supplierReminders.length === 0
                       ? "Inga påminnelser skickade"
                       : `${supplierReminders.length} påminnelse(r) · Första: ${firstReminder}`}
@@ -220,7 +220,7 @@ export default function RequesterDetailPage({ params }: { params: Promise<{ id: 
                 <button
                   onClick={() => handleReminder(sId)}
                   disabled={allSubmitted}
-                  className="text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1.5 rounded transition disabled:opacity-40"
+                  className="text-sm bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 px-3 py-1.5 rounded transition disabled:opacity-40"
                 >
                   Skicka påminnelse
                 </button>

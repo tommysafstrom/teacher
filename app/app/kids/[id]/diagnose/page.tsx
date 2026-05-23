@@ -64,7 +64,7 @@ export default function DiagnosePage() {
           ← Tillbaka till profil
         </Link>
         <h1 className="text-2xl font-bold mt-2">Diagnoser</h1>
-        <p className="text-sm text-gray-500 mt-1">
+        <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
           Lägg till eller ta bort diagnoser för eleven.
         </p>
       </div>
@@ -73,16 +73,16 @@ export default function DiagnosePage() {
       <section className="mb-6">
         <h2 className="text-base font-semibold mb-2">Aktiva diagnoser</h2>
         {diagnoses.length === 0 ? (
-          <p className="text-sm text-gray-400">Inga diagnoser registrerade.</p>
+          <p className="text-sm text-gray-400 dark:text-gray-500">Inga diagnoser registrerade.</p>
         ) : (
           <ul className="space-y-2">
             {diagnoses.map((d) => (
               <li
                 key={d.id}
-                className="flex items-center justify-between bg-white border border-gray-200 rounded px-4 py-2 text-sm"
+                className="flex items-center justify-between bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded px-4 py-2 text-sm"
               >
                 <span className="font-medium capitalize">{d.label}</span>
-                <span className="text-gray-400 mr-4">{d.date}</span>
+                <span className="text-gray-400 dark:text-gray-500 mr-4">{d.date}</span>
                 <button
                   onClick={() => removeDiagnosis(d.id)}
                   className="text-red-500 hover:text-red-700 text-xs"
@@ -106,8 +106,8 @@ export default function DiagnosePage() {
               disabled={adding || activeLabels.has(opt.label)}
               className={`px-4 py-2 rounded border text-sm font-medium transition ${
                 activeLabels.has(opt.label)
-                  ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed"
-                  : "bg-white text-gray-700 border-gray-300 hover:border-blue-400 hover:text-blue-700"
+                  ? "bg-gray-100 dark:bg-gray-700 text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-600 cursor-not-allowed"
+                  : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600 hover:border-blue-400 hover:text-blue-700 dark:hover:text-blue-400"
               }`}
             >
               {opt.display}

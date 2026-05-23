@@ -61,18 +61,18 @@ function WheelGraph({ percent }: { percent: number }) {
 function StatusBadge({ status }: { status: "submitted" | "started" | "not_started" }) {
   if (status === "submitted")
     return (
-      <span className="inline-block px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">
+      <span className="inline-block px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300">
         Inskickad
       </span>
     );
   if (status === "started")
     return (
-      <span className="inline-block px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-800">
+      <span className="inline-block px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900/40 dark:text-yellow-300">
         Påbörjad
       </span>
     );
   return (
-    <span className="inline-block px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-600">
+    <span className="inline-block px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300">
       Ej påbörjad
     </span>
   );
@@ -111,14 +111,14 @@ export default function SupplierPage() {
 
   const getKidLabel = (id: string) => kids.find((k) => k.id === id)?.label ?? id;
 
-  if (loading) return <p className="text-gray-400">Laddar...</p>;
+  if (loading) return <p className="text-gray-400 dark:text-gray-500">Laddar...</p>;
 
   return (
     <div>
       <h1 className="text-2xl font-bold mb-6">Mina förfrågningar</h1>
 
       {requests.length === 0 && (
-        <p className="text-gray-500">Inga aktiva förfrågningar tilldelade dig.</p>
+        <p className="text-gray-500 dark:text-gray-400">Inga aktiva förfrågningar tilldelade dig.</p>
       )}
 
       <ul className="space-y-6">
@@ -128,18 +128,18 @@ export default function SupplierPage() {
           );
 
           return (
-            <li key={request.id} className="bg-white border border-gray-200 rounded-lg p-5">
+            <li key={request.id} className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-5">
               <div className="mb-3">
-                <p className="text-sm text-gray-400">
+                <p className="text-sm text-gray-400 dark:text-gray-500">
                   Skapad {new Date(request.createdAt).toLocaleDateString("sv-SE")}
                 </p>
                 {request.dueDate && (
-                  <p className={`text-sm mt-0.5 ${new Date(request.dueDate) < new Date(new Date().toDateString()) ? "underline text-red-600" : "text-gray-500"}`}>
+                  <p className={`text-sm mt-0.5 ${new Date(request.dueDate) < new Date(new Date().toDateString()) ? "underline text-red-600" : "text-gray-500 dark:text-gray-400"}`}>
                     Svaras senast {new Date(request.dueDate).toLocaleDateString("sv-SE")}
                   </p>
                 )}
                 {request.note && (
-                  <p className="text-sm text-gray-600 mt-1 italic">{request.note}</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-300 mt-1 italic">{request.note}</p>
                 )}
               </div>
               <div className="space-y-2">
@@ -148,11 +148,11 @@ export default function SupplierPage() {
                   return (
                     <div
                       key={kidId}
-                      className="flex items-center justify-between bg-gray-50 rounded px-3 py-2"
+                      className="flex items-center justify-between bg-gray-50 dark:bg-gray-700/50 rounded px-3 py-2"
                     >
                       <div className="flex items-center gap-2">
                         <WheelGraph percent={kidProgress(myResponses, kidId)} />
-                        <span className={`text-sm font-medium ${status === "submitted" ? "text-gray-500" : ""}`}>
+                        <span className={`text-sm font-medium ${status === "submitted" ? "text-gray-500 dark:text-gray-400" : ""}`}>
                           {getKidLabel(kidId)}
                         </span>
                         {status !== "submitted" && <StatusBadge status={status} />}

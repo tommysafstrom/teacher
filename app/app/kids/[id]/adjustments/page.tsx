@@ -42,7 +42,7 @@ export default function AdjustmentsPage() {
     (area) => adjustments.some((a) => a.area === area)
   );
 
-  if (loading) return <p className="text-gray-400 text-sm">Laddar…</p>;
+  if (loading) return <p className="text-gray-400 dark:text-gray-500 text-sm">Laddar…</p>;
 
   return (
     <div>
@@ -51,27 +51,27 @@ export default function AdjustmentsPage() {
           ← Tillbaka till profil
         </Link>
         <h1 className="text-2xl font-bold mt-2">Anpassningar</h1>
-        <p className="text-sm text-gray-500 mt-1">
+        <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
           Tips baserade på elevens kartläggningar och diagnoser.
         </p>
       </div>
 
       {empty ? (
-        <div className="bg-yellow-50 border border-yellow-200 rounded p-4 text-sm text-yellow-800">
+        <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-700 rounded p-4 text-sm text-yellow-800 dark:text-yellow-300">
           Inga anpassningar ännu. Gör en kartläggning eller lägg till en diagnos för att se tips.
         </div>
       ) : (
         <div className="space-y-8">
           {areas.map((area) => (
             <section key={area}>
-              <h2 className="text-base font-semibold text-gray-700 border-b pb-1 mb-3">
+              <h2 className="text-base font-semibold text-gray-700 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700 pb-1 mb-3">
                 {AREA_LABELS[area]}
               </h2>
               <ul className="space-y-4">
                 {adjustments
                   .filter((a) => a.area === area)
                   .map((adj, i) => (
-                    <li key={i} className="bg-white border border-gray-200 rounded-lg p-4">
+                    <li key={i} className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
                       <p className="text-sm mb-3">{adj.tip}</p>
                       {adj.materialIds.length > 0 && (
                         <div className="flex flex-wrap gap-2">
@@ -82,7 +82,7 @@ export default function AdjustmentsPage() {
                               <Link
                                 key={mid}
                                 href={`/library`}
-                                className="text-xs bg-blue-50 border border-blue-200 text-blue-700 px-2 py-1 rounded hover:bg-blue-100 transition"
+                                className="text-xs bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700 text-blue-700 dark:text-blue-300 px-2 py-1 rounded hover:bg-blue-100 dark:hover:bg-blue-900/50 transition"
                               >
                                 {mat.title}
                               </Link>

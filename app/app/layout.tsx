@@ -37,7 +37,7 @@ export default async function RootLayout({
                   <Link href="/requester" className="text-sm font-medium text-blue-700 dark:text-blue-400 hover:underline">
                     Förfrågningar
                   </Link>
-                  <Link href="/" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">
+                  <Link href="/kids" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">
                     Elever
                   </Link>
                   <Link href="/library" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">
@@ -50,7 +50,7 @@ export default async function RootLayout({
                   <Link href="/supplier" className="text-sm font-medium text-blue-700 dark:text-blue-400 hover:underline">
                     Mina förfrågningar
                   </Link>
-                  <Link href="/" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">
+                  <Link href="/kids" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">
                     Elever
                   </Link>
                   <Link href="/library" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">

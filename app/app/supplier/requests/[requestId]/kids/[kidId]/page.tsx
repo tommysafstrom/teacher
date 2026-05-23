@@ -14,10 +14,10 @@ const FIELD_CONFIG: Record<Field, {
   dot: string;
   badge: string;
 }> = {
-  1: { label: "Fält 1", border: "border-red-400", bg: "bg-red-50", checkedBg: "bg-red-100", text: "text-red-700", dot: "bg-red-500", badge: "bg-red-100 text-red-700" },
-  2: { label: "Fält 2", border: "border-amber-400", bg: "bg-amber-50", checkedBg: "bg-amber-100", text: "text-amber-700", dot: "bg-amber-500", badge: "bg-amber-100 text-amber-700" },
-  3: { label: "Fält 3", border: "border-green-500", bg: "bg-green-50", checkedBg: "bg-green-100", text: "text-green-700", dot: "bg-green-500", badge: "bg-green-100 text-green-700" },
-  4: { label: "Fält 4", border: "border-blue-400", bg: "bg-blue-50", checkedBg: "bg-blue-100", text: "text-blue-700", dot: "bg-blue-400", badge: "bg-blue-100 text-blue-700" },
+  1: { label: "Fält 1", border: "border-red-400", bg: "bg-red-50 dark:bg-red-900/20", checkedBg: "bg-red-100 dark:bg-red-900/30", text: "text-red-700 dark:text-red-300", dot: "bg-red-500", badge: "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300" },
+  2: { label: "Fält 2", border: "border-amber-400", bg: "bg-amber-50 dark:bg-amber-900/20", checkedBg: "bg-amber-100 dark:bg-amber-900/30", text: "text-amber-700 dark:text-amber-300", dot: "bg-amber-500", badge: "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300" },
+  3: { label: "Fält 3", border: "border-green-500", bg: "bg-green-50 dark:bg-green-900/20", checkedBg: "bg-green-100 dark:bg-green-900/30", text: "text-green-700 dark:text-green-300", dot: "bg-green-500", badge: "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300" },
+  4: { label: "Fält 4", border: "border-blue-400", bg: "bg-blue-50 dark:bg-blue-900/20", checkedBg: "bg-blue-100 dark:bg-blue-900/30", text: "text-blue-700 dark:text-blue-300", dot: "bg-blue-400", badge: "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300" },
 };
 
 const AREAS = Object.keys(AREA_LABELS);
@@ -275,14 +275,14 @@ export default function SupplierAnswerPage({
   const getKidLabel = (id: string) => allKids.find((k) => k.id === id)?.label ?? id;
   const getUserName = (id: string) => allUsers.find((u) => u.id === id)?.name ?? id;
 
-  if (loading) return <p className="text-gray-400">Laddar...</p>;
+  if (loading) return <p className="text-gray-400 dark:text-gray-500">Laddar...</p>;
 
   return (
     <div className="flex gap-6 items-start">
       {/* Sidebar */}
       {allRequests.length > 0 && (
-        <aside className="w-52 flex-shrink-0 sticky top-8 self-start bg-white border border-gray-200 rounded-lg p-3">
-          <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">Mina förfrågningar</p>
+        <aside className="w-52 flex-shrink-0 sticky top-8 self-start bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-3">
+          <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wide mb-2">Mina förfrågningar</p>
           <div className="space-y-3">
             {allRequests.map((req) => {
               const overdue = isOverdue(req.dueDate);
@@ -291,9 +291,9 @@ export default function SupplierAnswerPage({
                 : new Date(req.createdAt).toLocaleDateString("sv-SE");
               return (
                 <div key={req.id}>
-                  <p className={`text-xs font-semibold mb-1 px-1 ${overdue ? "underline text-red-600" : "text-gray-600"}`}>
+                  <p className={`text-xs font-semibold mb-1 px-1 ${overdue ? "underline text-red-600" : "text-gray-600 dark:text-gray-300"}`}>
                     {reqLabel}
-                    {req.dueDate && <span className="ml-1 font-normal text-gray-400">({req.dueDate})</span>}
+                    {req.dueDate && <span className="ml-1 font-normal text-gray-400 dark:text-gray-500">({req.dueDate})</span>}
                   </p>
                   <ul className="space-y-0.5">
                     {req.kidIds.map((kid) => {
@@ -305,12 +305,12 @@ export default function SupplierAnswerPage({
                             href={`/supplier/requests/${req.id}/kids/${kid}`}
                             className={`flex items-center gap-1.5 px-2 py-1 rounded text-sm transition-colors ${
                               isActive
-                                ? "bg-blue-50 text-blue-700 font-medium"
-                                : "text-gray-700 hover:bg-gray-100"
+                                ? "bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 font-medium"
+                                : "text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
                             }`}
                           >
                             <WheelGraph percent={kidProgress(req, kid, currentUser?.id ?? "")} />
-                            <span className={status === "submitted" ? "text-gray-500" : ""}>{getKidLabel(kid)}</span>
+                            <span className={status === "submitted" ? "text-gray-500 dark:text-gray-400" : ""}>{getKidLabel(kid)}</span>
                           </Link>
                         </li>
                       );
@@ -333,16 +333,16 @@ export default function SupplierAnswerPage({
             Skolkompassen: {kidLabel}
           </h1>
           {request?.dueDate && (
-            <p className={`text-sm mt-0.5 ${isOverdue(request.dueDate) ? "underline text-red-600" : "text-gray-500"}`}>
+            <p className={`text-sm mt-0.5 ${isOverdue(request.dueDate) ? "underline text-red-600" : "text-gray-500 dark:text-gray-400"}`}>
               Svaras senast {new Date(request.dueDate).toLocaleDateString("sv-SE")}
             </p>
           )}
           {request?.note && (
-            <p className="text-sm text-gray-500 mt-1 italic">{request.note}</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 italic">{request.note}</p>
           )}
           {submitted && !reopened && (
             <div className="mt-3 flex items-center gap-4">
-              <p className="text-sm text-green-700 font-medium">
+              <p className="text-sm text-green-700 dark:text-green-400 font-medium">
                 Kartläggningen är inskickad.
               </p>
               <button
@@ -355,7 +355,7 @@ export default function SupplierAnswerPage({
             </div>
           )}
           {reopened && (
-            <p className="mt-2 text-sm text-blue-700 font-medium">
+            <p className="mt-2 text-sm text-blue-700 dark:text-blue-400 font-medium">
               Svaret är återöppnat — fyll i och skicka in igen.
             </p>
           )}
@@ -364,8 +364,8 @@ export default function SupplierAnswerPage({
         {!submitted && (
           <>
             {/* Legend */}
-            <div className="flex flex-wrap gap-3 mb-6 p-3 bg-gray-50 rounded-lg border border-gray-200">
-              <span className="text-xs font-semibold text-gray-500 self-center">Prioritet:</span>
+            <div className="flex flex-wrap gap-3 mb-6 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+              <span className="text-xs font-semibold text-gray-500 dark:text-gray-400 self-center">Prioritet:</span>
               {([1, 2, 3, 4] as Field[]).map((field) => {
                 const cfg = FIELD_CONFIG[field];
                 return (
@@ -377,7 +377,7 @@ export default function SupplierAnswerPage({
                   </div>
                 );
               })}
-              <span className="text-xs text-gray-400 self-center ml-1">
+              <span className="text-xs text-gray-400 dark:text-gray-500 self-center ml-1">
                 (Fält 1 = störst påverkan på lärandet)
               </span>
             </div>
@@ -393,26 +393,26 @@ export default function SupplierAnswerPage({
                 ).sort(([, fa], [, fb]) => fa - fb);
 
                 return (
-                  <section key={area} className="border border-gray-200 rounded-lg overflow-hidden">
+                  <section key={area} className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
                     <button
                       onClick={() => toggleArea(area)}
-                      className="w-full flex items-center justify-between px-4 py-3 bg-gray-50 hover:bg-gray-100 transition text-left"
+                      className="w-full flex items-center justify-between px-4 py-3 bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition text-left"
                     >
-                      <span className="font-semibold text-gray-800 text-sm">
+                      <span className="font-semibold text-gray-800 dark:text-gray-100 text-sm">
                         {AREA_LABELS[area]}
                       </span>
                       <div className="flex items-center gap-2">
                         {areaChecked > 0 && (
-                          <span className="text-xs bg-gray-700 text-white px-2 py-0.5 rounded-full">
+                          <span className="text-xs bg-gray-700 dark:bg-gray-600 text-white px-2 py-0.5 rounded-full">
                             {areaChecked}
                           </span>
                         )}
-                        <span className="text-gray-400 text-xs">{isOpen ? "▲" : "▼"}</span>
+                        <span className="text-gray-400 dark:text-gray-500 text-xs">{isOpen ? "▲" : "▼"}</span>
                       </div>
                     </button>
 
                     {isOpen && (
-                      <div className="divide-y divide-gray-100">
+                      <div className="divide-y divide-gray-100 dark:divide-gray-700">
                         {subAreas.map(([subArea, field]) => {
                           const cfg = FIELD_CONFIG[field as Field];
                           const items = areaQuestions.filter((q) => q.subArea === subArea);
@@ -433,7 +433,7 @@ export default function SupplierAnswerPage({
                                     <label
                                       key={q.id}
                                       className={`flex items-start gap-3 py-1.5 px-2 rounded cursor-pointer transition-colors ${
-                                        isChecked ? cfg.checkedBg : "hover:bg-gray-50"
+                                        isChecked ? cfg.checkedBg : "hover:bg-gray-50 dark:hover:bg-gray-700/50"
                                       }`}
                                     >
                                       <input
@@ -442,7 +442,7 @@ export default function SupplierAnswerPage({
                                         onChange={() => toggle(q.id)}
                                         className="mt-0.5 h-4 w-4 flex-shrink-0 accent-gray-700 cursor-pointer"
                                       />
-                                      <span className={`text-sm leading-snug ${isChecked ? "font-medium" : "text-gray-700"}`}>
+                                      <span className={`text-sm leading-snug ${isChecked ? "font-medium" : "text-gray-700 dark:text-gray-200"}`}>
                                         {q.text}
                                       </span>
                                     </label>
@@ -465,7 +465,7 @@ export default function SupplierAnswerPage({
                 type="button"
                 onClick={handleSaveDraft}
                 disabled={saving}
-                className="border border-gray-300 text-gray-700 px-4 py-2 rounded hover:border-blue-400 transition text-sm font-medium disabled:opacity-50"
+                className="border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 px-4 py-2 rounded hover:border-blue-400 transition text-sm font-medium disabled:opacity-50"
               >
                 {saving ? "Sparar..." : "Spara utkast"}
               </button>
@@ -473,11 +473,11 @@ export default function SupplierAnswerPage({
                 type="button"
                 onClick={handleSubmit}
                 disabled={saving}
-                className="bg-gray-800 text-white px-5 py-2 rounded hover:bg-gray-900 transition text-sm font-medium disabled:opacity-50"
+                className="bg-gray-800 dark:bg-gray-600 text-white px-5 py-2 rounded hover:bg-gray-900 dark:hover:bg-gray-500 transition text-sm font-medium disabled:opacity-50"
               >
                 Skicka in kartläggning
               </button>
-              <span className="text-sm text-gray-400">
+              <span className="text-sm text-gray-400 dark:text-gray-500">
                 {totalChecked === 0
                   ? "Inga påståenden markerade"
                   : `${totalChecked} markerade`}
@@ -491,11 +491,11 @@ export default function SupplierAnswerPage({
             <h2 className="text-lg font-semibold mb-4">Vad andra har svarat</h2>
             <div className="space-y-3">
               {otherResponses.map((resp) => (
-                <div key={resp.id} className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3">
-                  <p className="text-sm font-medium text-gray-700 mb-1">
+                <div key={resp.id} className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3">
+                  <p className="text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
                     {getUserName(resp.supplierId)}
                   </p>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-gray-600 dark:text-gray-300">
                     {resp.answers.traits
                       ? resp.answers.traits
                       : "Inga utmärkande drag"}

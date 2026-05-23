@@ -33,9 +33,9 @@ export default function LoginPage() {
   return (
     <div className="max-w-lg mx-auto">
       <h1 className="text-2xl font-bold mb-2">Vem är du?</h1>
-      <p className="text-gray-500 mb-6">Välj din profil för att fortsätta.</p>
+      <p className="text-gray-500 dark:text-gray-400 mb-6">Välj din profil för att fortsätta.</p>
       {loading ? (
-        <p className="text-gray-400">Laddar...</p>
+        <p className="text-gray-400 dark:text-gray-500">Laddar...</p>
       ) : (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {users.map((user) => (
@@ -43,10 +43,10 @@ export default function LoginPage() {
               key={user.id}
               onClick={() => handleSelect(user)}
               disabled={pending !== null}
-              className="bg-white border border-gray-200 rounded-lg px-5 py-6 text-left hover:border-blue-400 hover:shadow-sm transition disabled:opacity-60"
+              className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-5 py-6 text-left hover:border-blue-400 hover:shadow-sm transition disabled:opacity-60"
             >
-              <p className="font-semibold text-gray-900">{user.name}</p>
-              <p className="text-sm text-gray-500 mt-1 capitalize">
+              <p className="font-semibold text-gray-900 dark:text-white">{user.name}</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 capitalize">
                 {user.role === "supplier" ? "Lärare (svarar)" : "Samordnare (frågar)"}
               </p>
               {pending === user.id && (

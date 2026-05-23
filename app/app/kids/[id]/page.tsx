@@ -18,7 +18,7 @@ export default async function KidProfile({
           ← Tillbaka
         </Link>
         <h1 className="text-2xl font-bold mt-2">{kid.label}</h1>
-        <p className="text-sm text-gray-400">ID: {kid.id}</p>
+        <p className="text-sm text-gray-400 dark:text-gray-500">ID: {kid.id}</p>
       </div>
 
       {/* Action buttons */}
@@ -31,13 +31,13 @@ export default async function KidProfile({
         </Link>
         <Link
           href={`/kids/${kid.id}/diagnose`}
-          className="bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded hover:border-blue-400 transition text-sm font-medium"
+          className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 px-4 py-2 rounded hover:border-blue-400 transition text-sm font-medium"
         >
           Diagnos
         </Link>
         <Link
           href={`/kids/${kid.id}/adjustments`}
-          className="bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded hover:border-blue-400 transition text-sm font-medium"
+          className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 px-4 py-2 rounded hover:border-blue-400 transition text-sm font-medium"
         >
           Anpassningar
         </Link>
@@ -47,16 +47,16 @@ export default async function KidProfile({
       <section className="mb-6">
         <h2 className="text-lg font-semibold mb-2">Diagnoser</h2>
         {kid.diagnoses.length === 0 ? (
-          <p className="text-sm text-gray-400">Inga diagnoser registrerade.</p>
+          <p className="text-sm text-gray-400 dark:text-gray-500">Inga diagnoser registrerade.</p>
         ) : (
           <ul className="space-y-2">
             {kid.diagnoses.map((d) => (
               <li
                 key={d.id}
-                className="bg-white border border-gray-200 rounded px-4 py-2 text-sm flex justify-between"
+                className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded px-4 py-2 text-sm flex justify-between"
               >
                 <span className="font-medium capitalize">{d.label}</span>
-                <span className="text-gray-400">{d.date}</span>
+                <span className="text-gray-400 dark:text-gray-500">{d.date}</span>
               </li>
             ))}
           </ul>
@@ -67,19 +67,19 @@ export default async function KidProfile({
       <section>
         <h2 className="text-lg font-semibold mb-2">Kartläggningar</h2>
         {kid.screenings.length === 0 ? (
-          <p className="text-sm text-gray-400">Ingen kartläggning gjord ännu.</p>
+          <p className="text-sm text-gray-400 dark:text-gray-500">Ingen kartläggning gjord ännu.</p>
         ) : (
           <ul className="space-y-2">
             {kid.screenings.map((s) => (
               <li
                 key={s.id}
-                className="bg-white border border-gray-200 rounded px-4 py-2 text-sm"
+                className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded px-4 py-2 text-sm"
               >
                 <div className="flex justify-between mb-1">
                   <span className="font-medium">Kartläggning</span>
-                  <span className="text-gray-400">{s.date}</span>
+                  <span className="text-gray-400 dark:text-gray-500">{s.date}</span>
                 </div>
-                <p className="text-gray-600">{s.summary}</p>
+                <p className="text-gray-600 dark:text-gray-300">{s.summary}</p>
               </li>
             ))}
           </ul>

@@ -53,7 +53,7 @@ export default function NewRequestPage() {
     }
   }
 
-  if (loading) return <p className="text-gray-400">Laddar...</p>;
+  if (loading) return <p className="text-gray-400 dark:text-gray-500">Laddar...</p>;
 
   return (
     <div className="max-w-2xl">
@@ -63,7 +63,7 @@ export default function NewRequestPage() {
         {[1, 2, 3].map((s) => (
           <div
             key={s}
-            className={`flex-1 h-1.5 rounded-full ${step >= s ? "bg-blue-600" : "bg-gray-200"}`}
+            className={`flex-1 h-1.5 rounded-full ${step >= s ? "bg-blue-600" : "bg-gray-200 dark:bg-gray-700"}`}
           />
         ))}
       </div>
@@ -77,8 +77,8 @@ export default function NewRequestPage() {
                 key={kid.id}
                 className={`flex items-center gap-2 border rounded-lg px-4 py-3 cursor-pointer transition ${
                   selectedKids.includes(kid.id)
-                    ? "border-blue-500 bg-blue-50"
-                    : "border-gray-200 hover:border-blue-300"
+                    ? "border-blue-500 bg-blue-50 dark:bg-blue-900/30"
+                    : "border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:bg-gray-800"
                 }`}
               >
                 <input
@@ -112,8 +112,8 @@ export default function NewRequestPage() {
                 key={supplier.id}
                 className={`flex items-center gap-2 border rounded-lg px-4 py-3 cursor-pointer transition ${
                   selectedSuppliers.includes(supplier.id)
-                    ? "border-blue-500 bg-blue-50"
-                    : "border-gray-200 hover:border-blue-300"
+                    ? "border-blue-500 bg-blue-50 dark:bg-blue-900/30"
+                    : "border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:bg-gray-800"
                 }`}
               >
                 <input
@@ -129,7 +129,7 @@ export default function NewRequestPage() {
           <div className="mt-6 flex justify-between">
             <button
               onClick={() => setStep(1)}
-              className="text-sm text-gray-500 hover:underline"
+              className="text-sm text-gray-500 dark:text-gray-400 hover:underline"
             >
               ← Tillbaka
             </button>
@@ -147,7 +147,7 @@ export default function NewRequestPage() {
       {step === 3 && (
         <div>
           <h2 className="text-lg font-semibold mb-4">Steg 3: Bekräfta och skicka</h2>
-          <div className="bg-gray-50 rounded-lg p-4 mb-4 text-sm text-gray-700 space-y-1">
+          <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 mb-4 text-sm text-gray-700 dark:text-gray-200 space-y-1">
             <p>
               <span className="font-medium">Elever ({selectedKids.length}):</span>{" "}
               {kids
@@ -163,7 +163,7 @@ export default function NewRequestPage() {
                 .join(", ")}
             </p>
           </div>
-          <label className="block mb-1 text-sm font-medium text-gray-700">
+          <label className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-200">
             Anteckning (valfritt)
           </label>
           <textarea
@@ -171,21 +171,21 @@ export default function NewRequestPage() {
             value={note}
             onChange={(e) => setNote(e.target.value)}
             placeholder="Beskriv vad du behöver observationer om..."
-            className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
-          <label className="block mt-4 mb-1 text-sm font-medium text-gray-700">
+          <label className="block mt-4 mb-1 text-sm font-medium text-gray-700 dark:text-gray-200">
             Sista svarsdatum (valfritt)
           </label>
           <input
             type="date"
             value={dueDate}
             onChange={(e) => setDueDate(e.target.value)}
-            className="border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
           <div className="mt-6 flex justify-between">
             <button
               onClick={() => setStep(2)}
-              className="text-sm text-gray-500 hover:underline"
+              className="text-sm text-gray-500 dark:text-gray-400 hover:underline"
             >
               ← Tillbaka
             </button>
